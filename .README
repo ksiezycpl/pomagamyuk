@@ -1,0 +1,35 @@
+Dzięki temu portalowi darczyńcy dowiedzą się co jest potrzebne, a organizacje uporządkują swoje potrzeby.
+ksiezyc.pl przygotowała darmową aplikację dla organizacji chcących pomagać (nie tylko Ukrainie).
+
+Zauważyliśmy, że spontanicznie organizowana pomoc po pewnym czasie ma kłopoty z określeniem, co na dany dzień jest najbardziej potrzebne i chociaż ludzie z dobrego serca przynoszą mnóstwo  wartościowych rzeczy, to niektóre produkty, czy rzeczy "schodzą szybciej" niż inne. Portal powstał, aby organizacje były bardziej zorganizowane, a darczyńcy wiedzieli co jest na ten moment najbardziej potrzebne. 
+Dodatkowo można pokazać co placówka ma - czym dysponuje w danej chwili (to może być pomocne dla innych organizacji, które czegoś pilnie poszukują).
+Portal ma kilka wersji językowych, a w szczególności wersję ukraińską.
+Portal jest na licencji GNU, czyli jest darmowy i można go dalej rozpowszechniać. 
+
+Opcje panelu:
+- prezentowanie na stronie zapotrzebowania na dany towar usługe,
+- prezentowanie na stronie towarów/usług jakie uchodźcy mogę znaleźć w danym miejscu zbiórki.
+- konfiguracja podstawowych danych wyświetlanych na stronie z poziomu ustawień www ( nazwa strony, nazwa zbiórki, kontakt tel, kontakt email, miejsca zbiórki, aktywacja sklepiku, meta dane),
+- dodawanie towarów, usług jako zapotrzebowanie,
+- dodawanie towarów, usług jako dostępne dla uchodźców,
+- proste statystyki wejścia na stronę,
+
+Wymagania:
+- hosting z obsługa bazy danych MYSQL
+- domena lub subdomena,
+- PHP >5.6
+
+Instalacja:
+- wgrać pliki na serwer
+- ustawić prawa dostępu do zapisu dla pliku "img/certyfikat.jpg",
+- plik bazy danych znajduje się w katalogu panel/install/install.sql – należy wgrać go do bazy danych na hostingu,
+- w głównym katalogu wyedytować plik „connect.php” i ustawić dane dostępowe do bazy danych,
+- konfiguracja strony jak i stanów zapotrzebowania dostępne jest pod adresem http://<twoja_domena>/panel/ 
+- początkowy login i hasło to „test”,
+- po zalogowaniu zmienić hasło, ewentualnie użytkownika
+
+Jeśli potrzebujesz możesz się z nami skontaktować pod adresem: biuro@ksiezyc.pl
+
+
+
+
