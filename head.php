@@ -35,7 +35,13 @@
     <head>
     <title><?php print $settings['miasto']; ?></title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<meta charset='utf-8'>
+	<meta name="description" content='Pomagamy Ukrainie <?php print $settings['miasto']; ?>'>
+	<meta name="keywords" content='Ukraina, pomoc, dary, sklep, sklepik, pomóż, <?php print $settings['miasto']; ?>, polska'>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="Author" content="ksiezyc.pl" />
+	<meta http-equiv="Reply - to" content="biuro@ksiezyc.pl" />
+	<meta name="Language" content="pl" />
+	<meta http-equiv="Creation - date" content="2022-03-21" />
 	<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
 	<link rel='stylesheet' type='text/css' href='css/main.css'>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet" type="text/css" />
