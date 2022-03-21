@@ -1,6 +1,37 @@
 /* Jquery section */
+
 $(document).ready(function()
 {
+
+    $(".nie_potrzebuje").click(function ()
+    {
+        $(".bez_ograniczen").prop('checked', false);
+	$(".edycja_towaru_zapotrzebowanie").val("0");     
+    });
+    $(".bez_ograniczen").click(function ()
+    {
+        $(".nie_potrzebuje").prop('checked', false);
+	$(".edycja_towaru_zapotrzebowanie").val("-1");
+    });
+    $(".daje").click(function ()
+    {
+	$('#multiCollapseExample1').collapse('show');
+	$('#multiCollapseExample2').collapse('hide');
+        $(".daje .top-menu").toggleClass("top-menu_active");
+        $(".szukam .top-menu").removeClass("top-menu_active");
+	$('html, body').animate({ scrollTop: parseInt($(".daje").offset().top)}, 10);
+    });
+    
+    $(".szukam").click(function ()
+    {
+	$('#multiCollapseExample1').collapse('hide');
+	$('#multiCollapseExample2').collapse('show');
+        $(".szukam .top-menu").toggleClass("top-menu_active");
+        $(".daje .top-menu").removeClass("top-menu_active");
+	$('html, body').animate({ scrollTop: parseInt($(".szukam").offset().top)}, 10);
+    });
+    
+		
     var getUrlParameter = function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1),
 	    sURLVariables = sPageURL.split('&'),
@@ -52,7 +83,7 @@ $(document).ready(function()
         dropdown3.empty();
         $(".edycja_towaru_nazwa").val("");
 	$(".edycja_towaru_opis").val("");
-	$(".edycja_towaru_zapotrzebowanie").val("0");
+	$(".edycja_towaru_zapotrzebowanie").val("-1");
 	$(".edycja_towaru_dostepnosc").val("0");
 	$(".edycja_towaru_jednostka_miary").val("szt");
         $(".row_edycja_kategoria1").show();
@@ -61,6 +92,9 @@ $(document).ready(function()
         $(".modal-title").html("Dodaj towar");
         $("#suggesstion-box").hide();
 	$(".valid_box").addClass('d-none');
+	$(".nie_potrzebuje").prop('checked', false);
+	$(".bez_ograniczen").prop('checked', true);
+	
 //	Odczytanie i ustawienie wartosci menu z URL
 	var id_kategorie__glowne = getUrlParameter('id_kategorie__glowne');
 	var id_wiersz_kategorie__podkategorie_poziom_0 = getUrlParameter('id_wiersz_kategorie__podkategorie_poziom_0');
@@ -199,7 +233,7 @@ $(document).ready(function()
         $(".modal_kasuj").modal('show');
     });
     
-    /* obsluga guzika zapisz */
+    /* obsluga guzika zapisz towary*/
     $(".zapisz_btn").click(function ()
     {
         var toward_id=$(this).attr("data-zapisz_towar_id");
@@ -266,6 +300,8 @@ $(document).ready(function()
 	var towar_id=$(this).attr("data-towar_id");
         $(".zapisz_btn").attr("data-zapisz_towar_id",towar_id);
         $(".zapisz_btn").attr("data-towar_akcja","zapisz_edycje");
+	$(".nie_potrzebuje").prop('checked', false);
+	$(".bez_ograniczen").prop('checked', false);
 	$(".edycja_towaru_nazwa").val="";
 	$(".edycja_towaru_opis").val="";
 	$(".edycja_towaru_zapotrzebowanie").val="";
@@ -286,6 +322,14 @@ $(document).ready(function()
                 $(".edycja_towaru_nazwa").val(resp[1]);
                 $(".edycja_towaru_opis").val(resp[2]);
                 $(".edycja_towaru_zapotrzebowanie").val(resp[5]);
+		if (resp[5]=="-1.00")
+		{
+		   $(".bez_ograniczen").prop('checked', true); 
+		}
+		if (resp[5]=="0.00")
+		{
+		   $(".nie_potrzebuje").prop('checked', true); 
+		}
                 $(".edycja_towaru_dostepnosc").val(resp[6]);
                 $(".edycja_towaru_jednostka_miary").val(resp[7]);
             },
@@ -312,6 +356,130 @@ $(document).ready(function()
 		    }
 		});
 	});
+	
+    $(".edytuj_user").click(function ()
+    {
+	$(".valid_box").addClass('d-none');
+	var login_id=$(this).attr("data-user_id");
+        $(".zapisz_btn_edytuj_user").attr("data-zapisz_user_id",login_id);
+        $(".zapisz_btn_edytuj_user").attr("data-user_akcja","zapisz_edycje");
+	$(".edycja_user_login").val($(this).attr("data-user_nazwa"));
+	$(".edycja_user_haslo").val("");
+        $("#suggesstion-box").hide();
+        $(".modal-title").html("Edytuj użytkownika");
+	$(".modal_edytuj_user").modal('show');
+    });
+    
+    
+    $(".btn-dodaj_user").click(function ()
+    {
+	$(".valid_box").addClass('d-none');
+	var login_id=$(this).attr("data-user_id");
+        $(".zapisz_btn_edytuj_user").attr("data-zapisz_user_id",login_id);
+        $(".zapisz_btn_edytuj_user").attr("data-user_akcja","zapisz_nowy");
+	$(".edycja_user_login").val("");
+	$(".edycja_user_haslo").val("");
+        $("#suggesstion-box").hide();
+        $(".modal-title").html("Dodaj użytkownika");
+	$(".modal_edytuj_user").modal('show');
+    });
+    
+    
+        /* obsluga guzika zapisz users*/
+    $(".zapisz_btn_edytuj_user").click(function ()
+    {
+        var login_id=$(this).attr("data-zapisz_user_id");
+        var button_mode=$(this).attr("data-user_akcja");
+        var edycja_towaru_login=$(".edycja_user_login").val();
+        var edycja_towaru_haslo=$(".edycja_user_haslo").val();
+	
+        if (button_mode=="zapisz_edycje")
+        {
+	    if ($(".edycja_user_login").val().length>2 && $(".edycja_user_haslo").val().length>2)
+	    {
+		$.ajax({
+		    url	: '',
+		    type    : 'POST',
+		    data    : {'update_user':'true', 'login_id':login_id, 'edycja_towaru_login':edycja_towaru_login, 'edycja_towaru_haslo':edycja_towaru_haslo  },
+		    async   : false,
+		    dataType: 'json',
+		    success : function(resp){
+		       location.reload();
+		    },
+		    error   : function(resp){
+			alert("Bład odczytu ajax - skontaktuj sie z administratorem.");
+		    }
+		});
+	    }
+	    else
+	    {
+		$(".valid_box").removeClass('d-none');
+	    }
+	}
+        if (button_mode=="zapisz_nowy")
+        {
+	    if ($(".edycja_user_login").val().length>2 && $(".edycja_user_haslo").val().length>2)
+	    {
+		$.ajax({
+		    url	: '',
+		    type    : 'POST',
+		    data    : {'nowy_user':'true', 'login_id':login_id, 'edycja_towaru_login':edycja_towaru_login, 'edycja_towaru_haslo':edycja_towaru_haslo },
+		    async   : false,
+		    dataType: 'json',
+		    success : function(resp){
+		       location.reload();
+		    },
+		    error   : function(resp){
+			alert("Bład odczytu ajax - skontaktuj sie z administratorem.");
+		    }
+		});
+	    }
+	    else
+	    {
+		$(".valid_box").removeClass('d-none');
+	    }
+	}
+    });
+    
+    $(".usun_user").click(function ()
+    {
+        var login_id=$(this).attr("data-user_id");
+        var edycja_user_login=$(this).attr("data-user_nazwa");
+      	
+        $(".btn-kasuj_user_submit").attr("data-kasuj_id_user",login_id);
+	
+        $(".kasuj_user_nazwa").html(edycja_user_login);
+        $(".modal_kasuj_user").modal('show');
+    });
+    
+    $(".btn-kasuj_user_submit").click(function ()
+    {
+        var towar_id_kasuj=$(".btn-kasuj_user_submit").attr("data-kasuj_id_user");
+            $.ajax({
+            url	: '',
+            type    : 'POST',
+            data    : {'kasuj_user':'true', 'user_id':towar_id_kasuj},
+            async   : false,
+            dataType: 'json',
+            success : function(resp){
+               location.reload();
+            },
+            error   : function(resp){
+                alert("Bład odczytu ajax - skontaktuj sie z administratorem.");
+            }
+        });    
+    });
+    
+    	jQuery('.lang-select').click(function() {
+	  var theLang = jQuery(this).attr('data-lang');
+	  jQuery('.goog-te-combo').val(theLang);
+
+	  //alert(jQuery(this).attr('href'));
+	  window.location = jQuery(this).attr('href');
+	  location.reload();
+
+	});
+    
 });
 
 
@@ -320,6 +488,9 @@ function selectCountry(val) {
     $("#suggesstion-box").hide();
 }
 
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'pl'}, 'google_translate_element');
-}
+//function googleTranslateElementInit() {
+//    new google.translate.TranslateElement({pageLanguage: 'pl'}, 'google_translate_element');
+//}
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'pl', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element');
+    }

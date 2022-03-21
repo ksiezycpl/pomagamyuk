@@ -17,7 +17,7 @@
 	<div class='row mt-2'>
 		<div class='col-sm-12'>
 			<center>
-				<h4 class='p-1' style='background-color: #3399ff; color: #FFFFFF'>Potrzebne <?php echo $nazwa_kategorie__glowne; ?></h4>  
+				<h4 class='p-1' style='background-color: #3399ff; color: #FFFFFF'>Dostępne <?php echo $nazwa_kategorie__glowne; ?></h4>  
 			</center>
 		</div>
 		<div class='col-sm-12'>
@@ -35,8 +35,9 @@
 		while ($wiersz_kategorie__podkategorie_poziom_0 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_0)){
 			$id_wiersz_kategorie__podkategorie_poziom_0 = $wiersz_kategorie__podkategorie_poziom_0['id'];
 			$podkategoria_poziom_0 = $wiersz_kategorie__podkategorie_poziom_0['nazwa'];
-			
-			$sql_towary_poziom_0 = "SELECT * FROM towary WHERE kategorie__podkategorie_id = ".$id_wiersz_kategorie__podkategorie_poziom_0." AND pokaz = 1  AND (zapotrzebowanie = -1 OR zapotrzebowanie > 0)  ";
+			 if (@$_GET['wsk_dostepne'] == 1)
+                            $warunek_dostepne = " AND ile_dostepne > 0 "; 
+			$sql_towary_poziom_0 = "SELECT * FROM towary WHERE kategorie__podkategorie_id = ".$id_wiersz_kategorie__podkategorie_poziom_0." AND pokaz = 1".$warunek_dostepne;
 			$result_towary_poziom_0 = mysqli_query($link, $sql_towary_poziom_0);
 			$czy_sa_towary_poziom_0 = mysqli_num_rows($result_towary_poziom_0);
 			
@@ -50,7 +51,7 @@
 				$id_wiersz_kategorie__podkategorie_poziom_1 = $wiersz_kategorie__podkategorie_poziom_1['id'];
 				$podkategoria_poziom_1 = $wiersz_kategorie__podkategorie_poziom_1['nazwa'];
 				// jeżeli jest poziom 1 dla kategorii poziomu 0 to towar sprawdzamy tylko na poziomie 1 bo na poziomie 0 go być nie morze
-				$sql_towary_poziom_1 = "SELECT * FROM towary WHERE kategorie__podkategorie_id = ".$id_wiersz_kategorie__podkategorie_poziom_1." AND pokaz = 1  AND (zapotrzebowanie = -1 OR zapotrzebowanie > 0)  ";
+				$sql_towary_poziom_1 = "SELECT * FROM towary WHERE kategorie__podkategorie_id = ".$id_wiersz_kategorie__podkategorie_poziom_1." AND pokaz = 1".$warunek_dostepne;
 				$result_towary_poziom_1 = mysqli_query($link, $sql_towary_poziom_1);
 				$czy_sa_towary_poziom_1 = mysqli_num_rows($result_towary_poziom_1);
 				$czy_sa_towary_poziom_1_licznik = $czy_sa_towary_poziom_1_licznik + $czy_sa_towary_poziom_1;
@@ -59,7 +60,7 @@
 						<div class='row'>
 							<div class='col-1'></div>
 							<div
-							class='col-11'><a href='lista.php?id_kategorie__glowne=".@$_GET['kategorie__glowne_id']."&id_wiersz_kategorie__podkategorie_poziom_0=".$id_wiersz_kategorie__podkategorie_poziom_0."&id_wiersz_kategorie__podkategorie_poziom_1=".$id_wiersz_kategorie__podkategorie_poziom_1."' class='text-decoration-none'>".$podkategoria_poziom_1."</a></div>
+							class='col-11'><a href='lista.php?id_kategorie__glowne=".@$_GET['kategorie__glowne_id']."&id_wiersz_kategorie__podkategorie_poziom_0=".$id_wiersz_kategorie__podkategorie_poziom_0."&id_wiersz_kategorie__podkategorie_poziom_1=".$id_wiersz_kategorie__podkategorie_poziom_1."&wsk_dostepne=".@$_GET['wsk_dostepne']."' class='text-decoration-none'>".$podkategoria_poziom_1."</a></div>
 						</div>";
 				}
 			}
@@ -72,7 +73,7 @@
 					if ($czy_sa_kategorie__podkategorie_poziom_1 > 0)					
 						echo "<h5>".$podkategoria_poziom_0."</h5>";
 					else
-						echo "<h5><a href='lista.php?id_kategorie__glowne=".@$_GET['kategorie__glowne_id']."&id_wiersz_kategorie__podkategorie_poziom_0=".$id_wiersz_kategorie__podkategorie_poziom_0."' class='text-decoration-none'>".$podkategoria_poziom_0."</a></h5>";
+						echo "<h5><a href='lista.php?id_kategorie__glowne=".@$_GET['kategorie__glowne_id']."&id_wiersz_kategorie__podkategorie_poziom_0=".$id_wiersz_kategorie__podkategorie_poziom_0."&wsk_dostepne=".@$_GET['wsk_dostepne']."' class='text-decoration-none'>".$podkategoria_poziom_0."</a></h5>";
 						
 				// tutaj wstawić $poziom_1 z odpowiednimi warunkami
 				if ($czy_sa_towary_poziom_1_licznik > 0)

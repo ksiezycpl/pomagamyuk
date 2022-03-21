@@ -1,9 +1,7 @@
 <?php 
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
-include_once("../connect.php"); ?>
-
+    include_once("sesja.php"); 
+    include_once("../connect.php");
+?>
 <?php
 $curr_date_time=date("Y-m-d h:i:s");
 if (@$_POST['kasuj_towar']==true)
@@ -106,36 +104,45 @@ if (@$_POST['get_kategoria_poz3']==true && @$_POST['kategoria_id']!="")
 <?php include_once("head.php"); ?>
 <?php include_once("nav.php"); ?>
 <?php 
-	$sql_kategorie__glowne = "SELECT * FROM kategorie__glowne WHERE id = ".$_GET['id_kategorie__glowne']."";
-	$result_kategorie__glowne = mysqli_query($link, $sql_kategorie__glowne);
-	$wiersz_kategorie__glowne = mysqli_fetch_array($result_kategorie__glowne);
-		$nazwa_kategorie__glowne = $wiersz_kategorie__glowne['nazwa']; 
-	
-	
-	
-	$sql_kategorie__podkategorie_poziom_0 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_0'];
-	$result_kategorie__podkategorie_poziom_0 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_0);
-	$wiersz_kategorie__podkategorie_poziom_0 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_0);
-		$id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_0['id']; 
-		$nazwa_kategorie__podkategorie_poziom_0 = $wiersz_kategorie__podkategorie_poziom_0['nazwa']; 
-	
-	if ($_GET['id_wiersz_kategorie__podkategorie_poziom_1'] != ""){
-		$sql_kategorie__podkategorie_poziom_1 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_1'];
-		$result_kategorie__podkategorie_poziom_1 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_1);
-		$wiersz_kategorie__podkategorie_poziom_1 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_1);
-			// jeśli warunek jest spełniony $id_kategorie__podkategorie jest nadpisane  
-			$id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_1['id']; 
-			$nazwa_kategorie__podkategorie_poziom_1 = $wiersz_kategorie__podkategorie_poziom_1['nazwa']; 
-	}
+    $sql_kategorie__glowne = "SELECT * FROM kategorie__glowne WHERE id = ".$_GET['id_kategorie__glowne']."";
+    $result_kategorie__glowne = mysqli_query($link, $sql_kategorie__glowne);
+    $wiersz_kategorie__glowne = mysqli_fetch_array($result_kategorie__glowne);
+            $nazwa_kategorie__glowne = $wiersz_kategorie__glowne['nazwa']; 
+
+
+
+    $sql_kategorie__podkategorie_poziom_0 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_0'];
+    $result_kategorie__podkategorie_poziom_0 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_0);
+    $wiersz_kategorie__podkategorie_poziom_0 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_0);
+            $id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_0['id']; 
+            $nazwa_kategorie__podkategorie_poziom_0 = $wiersz_kategorie__podkategorie_poziom_0['nazwa']; 
+
+    if ($_GET['id_wiersz_kategorie__podkategorie_poziom_1'] != ""){
+            $sql_kategorie__podkategorie_poziom_1 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_1'];
+            $result_kategorie__podkategorie_poziom_1 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_1);
+            $wiersz_kategorie__podkategorie_poziom_1 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_1);
+                    // jeśli warunek jest spełniony $id_kategorie__podkategorie jest nadpisane  
+                    $id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_1['id']; 
+                    $nazwa_kategorie__podkategorie_poziom_1 = $wiersz_kategorie__podkategorie_poziom_1['nazwa']; 
+    }
+    // ustalenie daty ost. aktualizacji
+    $sql_towary_data_aktualizacji = "SELECT MAX(data) FROM towary WHERE kategorie__podkategorie_id = ".$id_kategorie__podkategorie;
+    $result_towary_data_aktualizacji = mysqli_query($link, $sql_towary_data_aktualizacji);
+    $wiersz_towary_data_aktualizacji = mysqli_fetch_array($result_towary_data_aktualizacji);
+    $data_aktualizacji = $wiersz_towary_data_aktualizacji[0];
 ?>
 <div class='container'>
 <?php //include("carousel.php"); ?>
-	<div class='row mt-4'>
-		<div>
+	<div class='row mt-2'>
+		<div class='col-sm-12'>
 			<center>
-				<h2 class='py-2' style='background-color: #3399ff;'>Edytujesz <?php echo $nazwa_kategorie__glowne.", ".$nazwa_kategorie__podkategorie_poziom_0.", ".$nazwa_kategorie__podkategorie_poziom_1; ?></h2>
-			</center>
-                    
+			<h2 class='py-2' style='background-color: #3399ff; color: #FFFFFF'>Edytujesz <?php echo $nazwa_kategorie__glowne.", ".$nazwa_kategorie__podkategorie_poziom_0.", ".$nazwa_kategorie__podkategorie_poziom_1; ?></h2>
+			</center>      
+		</div>
+		<div class='col-sm-12'>
+			<center>
+			  <h5 style='background-color: #ffa500;'>Stan tych potrzeb na: <?php echo $data_aktualizacji; ?></h5>
+			<center>
 		</div>
 	</div>
 	<div class='row mt-4'>
@@ -149,17 +156,17 @@ if (@$_POST['get_kategoria_poz3']==true && @$_POST['kategoria_id']!="")
 
 print "<button type=\"button\" class='btn btn-sm btn-success btn-dodaj_towar'>Dodaj nowy</button>";
 print "<div class='row mt-3'>
-                                <div class='col-sm-12'>
-                                        <div class='table_css_responsive' id='results'>
-                                                <div class='theader'>
-                                                        <div class='table_css_responsive_header'>L.P</div>
-                                                        <div class='table_css_responsive_header'>Nazwa</div>
-                                                        <div class='table_css_responsive_header'>Opis</div>
-                                                        <div class='table_css_responsive_header'>Zapotrzebowanie</div>
-                                                        <div class='table_css_responsive_header'>Ile dostępnych</div>
-							<div class='table_css_responsive_header'>j.m.</div>
-							<div class='table_css_responsive_header'>Akcja</div>
-                                                </div>";
+	    <div class='col-sm-12'>
+		    <div class='table_css_responsive' id='results'>
+			    <div class='theader'>
+				    <div class='table_css_responsive_header'>L.P</div>
+				    <div class='table_css_responsive_header'>Nazwa</div>
+				    <div class='table_css_responsive_header'>Opis</div>
+				    <div class='table_css_responsive_header'>Zapotrzebowanie</div>
+				    <div class='table_css_responsive_header'>Ile dostępnych</div>
+				    <div class='table_css_responsive_header'>j.m.</div>
+				    <div class='table_css_responsive_header'>Akcja</div>
+			    </div>";
 	
 		$sql_towary = "SELECT * FROM towary WHERE kategorie__podkategorie_id = ".$id_kategorie__podkategorie;
 		$result_towary = mysqli_query($link, $sql_towary);
@@ -170,6 +177,8 @@ print "<div class='row mt-3'>
 			$nazwa = $wiersz_towary['nazwa']; 
 			$opis = $wiersz_towary['opis'];
 			$zapotrzebowanie = $wiersz_towary['zapotrzebowanie']; 
+			if ($zapotrzebowanie == -1)
+				$zapotrzebowanie = "Każda ilość";
 			$ile_dostepne = $wiersz_towary['ile_dostepne']; 
 			$j_m = $wiersz_towary['j_m']; 
 			$uzytkownicy_id = $wiersz_towary['uzytkownicy_id']; 		
@@ -278,8 +287,11 @@ print "<div class='row mt-3'>
 		    <textarea class="form-control edycja_towaru_opis" id="message-text"></textarea>
 		</div>
 		<div class="mb-3">
-		    <label for="recipient-name" class="col-form-label ">Zapotrzebowanie: (0=bez limitu)</label>
+		    <label for="recipient-name" class="col-form-label ">Zapotrzebowanie:</label>
 		    <input type="text" class="form-control edycja_towaru_zapotrzebowanie" id="recipient-name">
+		    Nie potrzebuje (0): <input class="form-check-input nie_potrzebuje" type="checkbox" name='zapotrzebowanie_check'  id="nie_potrzebuje" >
+		    Bez ograniczeń (-1): <input class="form-check-input bez_ograniczen" type="checkbox" name='zapotrzebowanie_check'  id="bez_ograniczen" >
+
 		</div>
 		<div class="mb-3">
 		    <label for="recipient-name" class="col-form-label ">Ile dostępnych:</label>
@@ -290,7 +302,7 @@ print "<div class='row mt-3'>
                     <select class="form-select edycja_towaru_jednostka_miary" aria-label="Default select example">
                         <option selected value="szt">szt</option>
                         <option value="litr">litr</option>
-                        <option value="litr">paleta</option>
+                        <option value="paleta">paleta</option>
                     </select>
 		</div>
 	    </div>
@@ -301,7 +313,6 @@ print "<div class='row mt-3'>
 	</div>
     </div>
 </div>
-<!-- STOPModal EDYCJA-->
 <div class="modal fade modal_kasuj" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -319,10 +330,6 @@ print "<div class='row mt-3'>
     </div>
   </div>
 </div>
-
-<!-- START Modal KASU-->
-
-<!-- STOP Modal KASUJ-->
 <?php include_once("footer.php"); ?>
 </body>
 </html>

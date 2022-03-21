@@ -1,4 +1,7 @@
-<?php include_once("../connect.php"); ?>
+<?php 
+	include_once("sesja.php"); 
+	include_once("../connect.php"); 
+?>
 <?php include_once("head.php"); ?>
 <?php include_once("nav.php"); ?>
 <div class='container'>
@@ -7,17 +10,27 @@
 		$sql_kategorie__glowne = "SELECT * FROM kategorie__glowne WHERE id = ".$_GET['kategorie__glowne_id']."";
 		$result_kategorie__glowne = mysqli_query($link, $sql_kategorie__glowne);
 		$wiersz_kategorie__glowne = mysqli_fetch_array($result_kategorie__glowne);
-			$nazwa_kategorie__glowne = $wiersz_kategorie__glowne['nazwa'];  
+			$nazwa_kategorie__glowne = $wiersz_kategorie__glowne['nazwa'];
+		// ustalenie daty ost. aktualizacji
+		$sql_towary_data_aktualizacji = "SELECT MAX(data) FROM towary";	
+		$result_towary_data_aktualizacji = mysqli_query($link, $sql_towary_data_aktualizacji);
+		$wiersz_towary_data_aktualizacji = mysqli_fetch_array($result_towary_data_aktualizacji);
+		$data_aktualizacji = $wiersz_towary_data_aktualizacji[0];
 	
 	?>
-	<div class='row mt-4'>
-		<div>
+	<div class='row mt-2'>
+		<div class='col-sm-12'>
 			<center>
-				<h2 class='py-2' style='background-color: #3399ff;'>Potrzebne <?php echo $nazwa_kategorie__glowne; ?></h2>
+				<h2 class='py-2' style='background-color: #3399ff; color: #FFFFFF'><?php echo $nazwa_kategorie__glowne; ?></h2>
 			</center>
 		</div>
+		<div class='col-sm-12'>
+		<center>
+		  <h5 style='background-color: #ffa500;'>Ostatnie zmiany: <?php echo $data_aktualizacji; ?></h5>
+		<center>
 	</div>
-	<div class='row mt-4'>
+	</div>
+	<div class='row mt-2'>
 		<div class='col-12 mt-2'>
 			<h3>Kliknij na liście odpowiednią pozycję i wyświetl listę do edycji</h3>
 		</div>

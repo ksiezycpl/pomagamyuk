@@ -5,9 +5,15 @@ include("naglowek_log_login.php");
 $body_page .= "
 <div class='container mt-3'> 
 	<div class='row'>
-		<div class='col-4'></div>
-		<div class='col-4'>
-			<img src='../img/flaga-640.jpg' class='mx-auto d-block mb-4 img-fluid'>"; 
+                <div class='col-sm-4'></div>
+		<div class='col-sm-4'>
+			<img src='../img/flaga-640.jpg' class='mx-auto d-block mb-4 img-fluid'>
+                </div>
+                <div class='col-sm-4'></div>
+        </div>
+        <div class='row'>
+                <div class='col-sm-4'></div>
+		<div class='col-sm-4'>"; 
 // sprawdzamy czy user nie jest przypadkiem zalogowany
 if(!$_SESSION['logged_user']) {
     // jeśli zostanie naciśnięty przycisk "Zaloguj"
@@ -36,10 +42,10 @@ if(!$_SESSION['logged_user']) {
 	// wyświetlamy komunikat na zalogowanie się
 	$body_page .= '<form method="post" action="log_login.php">
 		<p style="font-family: verdana">
-			Login: <input type="text" value="'.$_POST['name'].'" name="name" class="form_login form_mobile_login_640 form_mobile_login_360">
+			Login: <input type="text" value="'.$_POST['name'].'" name="name" class="form-control block-inline">
 		</p>
 		<p style="font-family: verdana">
-			Hasło: <input type="password" value="'.$_POST['password'].'" name="password" class="form_login form_mobile_login_640 form_mobile_login_360">
+			Hasło: <input type="password" value="'.$_POST['password'].'" name="password" class="form-control">
 		</p>
 		<center>
 			<p>
@@ -49,11 +55,11 @@ if(!$_SESSION['logged_user']) {
 	</form>';
     }
 } else 
-    $body_page .= '<p>Jesteś już zalogowany, więc nie możesz się zalogować ponownie.</p><p>[<a href="log_login.php">Powrót</a>]</p>';
+    $body_page .= '<p>Jesteś już zalogowany, więc nie możesz się zalogować ponownie.</p><p>[<a href="index.php">Powrót</a>]</p>';
 
 $body_page .= "
 		</div>
-		<div class='col-4'></div>
+		<div class='col-sm-4'></div>
 	</div>
 </div>
 </body>

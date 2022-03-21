@@ -1,5 +1,4 @@
 <?php
-
 // definiujemy dane do połączenia z bazą danych
 define('DBHOST', 'localhost');
 define('DBNAME', 'pomagamyzd_pomoc');
