@@ -37,19 +37,29 @@
                             <li class='nav-item dropdown'>
                                     <a class='nav-link dropdown-toggle text-dark px-3' href='#' role='button' data-bs-toggle='dropdown'><i class="fas fa-clipboard-list"></i> Potrzebne są</a>
                                     <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=1'> Rzeczy</a></li>
-                                            <li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=2'> Usługi</a></li>
-                                            <li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=3'> Zakwaterowanie</a></li>
-                                            <li><a class='dropdown-item px-3' href='lista.php?kategorie__glowne_id=3&wsk_lista=1'> Pokaż całą listę</a></li>
+				    <?php 
+					if ($count_towary_gr1>0) 
+					    print "<li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=1'> Rzeczy</a></li>";
+					if ($count_towary_gr2>0) 
+					    print "<li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=2'> Usługi</a></li>";
+					if ($count_towary_gr3>0) 
+					    print "<li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=3'> Zakwaterowanie</a></li>";
+					print "<li><a class='dropdown-item px-3' href='lista.php?kategorie__glowne_id=3&wsk_lista=1'> Pokaż całą listę</a></li>";
+				    ?>
                                     </ul>
                             </li>
                             <?php if ( $settings['pokaz_sklepik']=="on"){ ?>
                             <li class='nav-item dropdown'>
                                     <a class='nav-link dropdown-toggle text-dark px-3' href='#' role='button' data-bs-toggle='dropdown'><i class="fas fa-clipboard-list"></i> Ogłoszenia różne</a>
                                     <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=1&wsk_dostepne=1'> Rzeczy</a></li>
-                                            <li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=2&wsk_dostepne=1'> Usługi</a></li>
-                                            <li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=3&wsk_dostepne=1'> Zakwaterowanie</a></li>
+				    <?php 
+					if ($count_sklepik_gr1>0)
+						print "<li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=1&wsk_dostepne=1'> Rzeczy</a></li>";
+					if ($count_sklepik_gr2>0)
+						print "<li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=2&wsk_dostepne=1'> Usługi</a></li>";
+					if ($count_sklepik_gr3>0)
+						print "<li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=3&wsk_dostepne=1'> Zakwaterowanie</a></li>";
+				    ?>
                                             <li><a class='dropdown-item px-3' href='lista.php?kategorie__glowne_id=3&wsk_dostepne=1&wsk_lista=1'> Pokaż całą listę</a></li>
                                     </ul>
                             </li>
