@@ -28,6 +28,32 @@
 	$settings[$wiersz_settings['nazwa']]= base64_decode($wiersz_settings['wartosc']); 
     }
 
+    	$sql_count_towary_gr1 = "select count(id) from towary where kategorie__glowne_id=1 and (zapotrzebowanie='-1' or zapotrzebowanie>0)";
+	$result_count_towary_gr1 = mysqli_query($link, $sql_count_towary_gr1);
+	$wiersz_count_towary_gr1 = mysqli_fetch_array($result_count_towary_gr1);
+	$count_towary_gr1 = $wiersz_count_towary_gr1[0];
+	$sql_count_towary_gr2 = "select count(id) from towary where kategorie__glowne_id=2 and (zapotrzebowanie='-1' or zapotrzebowanie>0)";
+	$result_count_towary_gr2 = mysqli_query($link, $sql_count_towary_gr2);
+	$wiersz_count_towary_gr2 = mysqli_fetch_array($result_count_towary_gr2);
+	$count_towary_gr2 = $wiersz_count_towary_gr2[0];
+	$sql_count_towary_gr3 = "select count(id) from towary where kategorie__glowne_id=3 and (zapotrzebowanie='-1' or zapotrzebowanie>0)";
+	$result_count_towary_gr3 = mysqli_query($link, $sql_count_towary_gr3);
+	$wiersz_count_towary_gr3 = mysqli_fetch_array($result_count_towary_gr3);
+	$count_towary_gr3 = $wiersz_count_towary_gr3[0];
+
+	$sql_count_sklepik_gr1 = "select count(id) from towary where kategorie__glowne_id=1 and ile_dostepne>0";
+	$result_count_sklepik_gr1 = mysqli_query($link, $sql_count_sklepik_gr1);
+	$wiersz_count_sklepik_gr1 = mysqli_fetch_array($result_count_sklepik_gr1);
+	$count_sklepik_gr1 = $wiersz_count_sklepik_gr1[0];
+	$sql_count_sklepik_gr2 = "select count(id) from towary where kategorie__glowne_id=2 and ile_dostepne>0";
+	$result_count_sklepik_gr2 = mysqli_query($link, $sql_count_sklepik_gr2);
+	$wiersz_count_sklepik_gr2 = mysqli_fetch_array($result_count_sklepik_gr2);
+	$count_sklepik_gr2 = $wiersz_count_sklepik_gr2[0];
+	$sql_count_sklepik_gr3 = "select count(id) from towary where kategorie__glowne_id=3 and ile_dostepne>0";
+	$result_count_sklepik_gr3 = mysqli_query($link, $sql_count_sklepik_gr3);
+	$wiersz_count_sklepik_gr3 = mysqli_fetch_array($result_count_sklepik_gr3);
+	$count_sklepik_gr3 = $wiersz_count_sklepik_gr3[0];
+
 ?>
 
 <!DOCTYPE html>
