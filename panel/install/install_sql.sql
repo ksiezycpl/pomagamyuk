@@ -130,6 +130,7 @@ INSERT INTO `settings` (`id`, `nazwa`, `wartosc`) VALUES(11, 'pokaz_form_kontakt
 INSERT INTO `settings` (`id`, `nazwa`, `wartosc`) VALUES(12, 'certyfikat_text', 'PHA+VGVuIGNlcnR5ZmlrYXQgem9zdGHFgiB3eXN0YXdpb255IHByemV6IGNlbnRydW0gY2VydHlmaWthY2ppPC9wPg==');
 INSERT INTO `settings` (`id`, `nazwa`, `wartosc`) VALUES(13, 'page_name', 'eHh4eHh4LnBs');
 INSERT INTO `settings` (`id`, `nazwa`, `wartosc`) VALUES(14, 'pokaz_sklepik', 'b24=');
+INSERT INTO `settings` (`id`, `nazwa`, `wartosc`) VALUES(15, 'pokaz_ogloszenia', 'b24=');
 
 -- --------------------------------------------------------
 

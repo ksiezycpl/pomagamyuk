@@ -13,24 +13,25 @@ $(document).ready(function()
         $(".nie_potrzebuje").prop('checked', false);
 	$(".edycja_towaru_zapotrzebowanie").val("-1");
     });
+    
     $(".daje").click(function ()
     {
 	$('#multiCollapseExample1').collapse('show');
 	$('#multiCollapseExample2').collapse('hide');
         $(".daje .top-menu").toggleClass("top-menu_active");
-        $(".szukam .top-menu").removeClass("top-menu_active");
+	$(".ogloszenia .top-menu").removeClass("top-menu_active");
 	$('html, body').animate({ scrollTop: parseInt($(".daje").offset().top)}, 10);
     });
     
-    $(".szukam").click(function ()
+    $(".ogloszenia").click(function ()
     {
 	$('#multiCollapseExample1').collapse('hide');
 	$('#multiCollapseExample2').collapse('show');
-        $(".szukam .top-menu").toggleClass("top-menu_active");
+        $(".ogloszenia .top-menu").toggleClass("top-menu_active");
         $(".daje .top-menu").removeClass("top-menu_active");
-	$('html, body').animate({ scrollTop: parseInt($(".szukam").offset().top)}, 10);
+	
+	$('html, body').animate({ scrollTop: parseInt($(".ogloszenia").offset().top)}, 10);
     });
-    
 		
     var getUrlParameter = function getUrlParameter(sParam) {
 	var sPageURL = window.location.search.substring(1),

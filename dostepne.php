@@ -7,7 +7,7 @@
 		$result_kategorie__glowne = mysqli_query($link, $sql_kategorie__glowne);
 		$wiersz_kategorie__glowne = mysqli_fetch_array($result_kategorie__glowne);
 			$nazwa_kategorie__glowne = $wiersz_kategorie__glowne['nazwa'];  
-			
+                        			
 		$sql_towary_data_aktualizacji = "SELECT MAX(data) FROM towary";
 		$result_towary_data_aktualizacji = mysqli_query($link, $sql_towary_data_aktualizacji);
 		$wiersz_towary_data_aktualizacji = mysqli_fetch_array($result_towary_data_aktualizacji);
@@ -17,7 +17,7 @@
 	<div class='row mt-2'>
 		<div class='col-sm-12'>
 			<center>
-				<h4 class='p-1' style='background-color: #3399ff; color: #FFFFFF'>Dostępne <?php echo $nazwa_kategorie__glowne; ?></h4>  
+				<h4 class='p-1' style='background-color: #3399ff; color: #FFFFFF'>Ogłaszane <?php echo $nazwa_kategorie__glowne; ?></h4>  
 			</center>
 		</div>
 		<div class='col-sm-12'>

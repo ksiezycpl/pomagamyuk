@@ -37,7 +37,7 @@
                             <li class='nav-item dropdown'>
                                     <a class='nav-link dropdown-toggle text-dark px-3' href='#' role='button' data-bs-toggle='dropdown'><i class="fas fa-clipboard-list"></i> Potrzebne są</a>
                                     <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=1'> Towary</a></li>
+                                            <li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=1'> Rzeczy</a></li>
                                             <li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=2'> Usługi</a></li>
                                             <li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=3'> Zakwaterowanie</a></li>
                                             <li><a class='dropdown-item px-3' href='lista.php?kategorie__glowne_id=3&wsk_lista=1'> Pokaż całą listę</a></li>
@@ -45,9 +45,9 @@
                             </li>
                             <?php if ( $settings['pokaz_sklepik']=="on"){ ?>
                             <li class='nav-item dropdown'>
-                                    <a class='nav-link dropdown-toggle text-dark px-3' href='#' role='button' data-bs-toggle='dropdown'><i class="fas fa-clipboard-list"></i> Dostępne są</a>
+                                    <a class='nav-link dropdown-toggle text-dark px-3' href='#' role='button' data-bs-toggle='dropdown'><i class="fas fa-clipboard-list"></i> Ogłoszenia różne</a>
                                     <ul class='dropdown-menu'>
-                                            <li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=1&wsk_dostepne=1'> Towary</a></li>
+                                            <li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=1&wsk_dostepne=1'> Rzeczy</a></li>
                                             <li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=2&wsk_dostepne=1'> Usługi</a></li>
                                             <li><a class='dropdown-item px-3' href='dostepne.php?kategorie__glowne_id=3&wsk_dostepne=1'> Zakwaterowanie</a></li>
                                             <li><a class='dropdown-item px-3' href='lista.php?kategorie__glowne_id=3&wsk_dostepne=1&wsk_lista=1'> Pokaż całą listę</a></li>
@@ -55,7 +55,7 @@
                             </li>
                             <?php } ?>
                             <li class='nav-item'>
-                                <a class='nav-link text-dark px-3' href='miejsce_zbiorki.php'><i class='fas fa-balance-scale'></i> Miejsca zbiórki</a>
+                                <a class='nav-link text-dark px-3' href='miejsce_zbiorki.php'><i class='fas fa-balance-scale'></i> Miejsca i godziny zbiórki</a>
                             </li>
                             <li class='nav-item'>
                                     <a class='nav-link text-dark px-3' href='po_co_to.php'><font style='font-size:18px;'><b>?</b></font> Po co to</a>

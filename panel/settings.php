@@ -51,12 +51,12 @@ if (filter_input(INPUT_POST, 'zapisz')=="zapisz")
     else
 	$sql_pokaz_form_kontakt=base64_encode('off');
     
-    $sql_pokaz_sklepik=filter_input(INPUT_POST, 'sql_pokaz_sklepik');
+    $sql_pokaz_ogloszenia=filter_input(INPUT_POST, 'sql_pokaz_ogloszenia');
    
-    if ($sql_pokaz_sklepik=='on')
-	$sql_pokaz_sklepik=base64_encode('on');
+    if ($sql_pokaz_ogloszenia=='on')
+	$sql_pokaz_ogloszenia=base64_encode('on');
     else
-	$sql_pokaz_sklepik=base64_encode('off');
+	$sql_pokaz_ogloszenia=base64_encode('off');
 
     $sql_certyfikat_tekst=base64_encode(filter_input(INPUT_POST, 'sql_certyfikat_tekst'));
     $query = "UPDATE settings SET wartosc='$sql_page_name' WHERE nazwa='page_name'";
@@ -73,7 +73,7 @@ if (filter_input(INPUT_POST, 'zapisz')=="zapisz")
     $result = mysqli_query($link,$query);
     $query = "UPDATE settings SET wartosc='$sql_pokaz_form_kontakt' WHERE nazwa='pokaz_form_kontakt'";
     $result = mysqli_query($link,$query);
-    $query = "UPDATE settings SET wartosc='$sql_pokaz_sklepik' WHERE nazwa='pokaz_sklepik'";
+    $query = "UPDATE settings SET wartosc='$sql_pokaz_ogloszenia' WHERE nazwa='pokaz_ogloszenia'";
     $result = mysqli_query($link,$query);
     $query = "UPDATE settings SET wartosc='$sql_miejsce_zbiorki' WHERE nazwa='miejsce_zbiorki'";
     $result = mysqli_query($link,$query);
@@ -98,12 +98,12 @@ if (filter_input(INPUT_POST, 'zapisz')=="zapisz")
 	$check_pokaz_formularz_kontaktowy='checked';
     }
     
-    if ($settings['pokaz_sklepik']=='off')
+    if ($settings['pokaz_ogloszenia']=='off')
     {
-	$check_pokaz_sklepik='';
+	$check_pokaz_ogloszenia='';
     }
     else {
-	$check_pokaz_sklepik='checked';
+	$check_pokaz_ogloszenia='checked';
     }
 
     ?>
@@ -135,11 +135,11 @@ if (filter_input(INPUT_POST, 'zapisz')=="zapisz")
 	<input type="tel" class="form-control sql_telefon_footer" name="sql_telefon_footer" id="sql_telefon_footer" placeholder="" value='<?php print $settings['telefon_footer']; ?>'>
     </div>    
     <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">Pokaż dostępne (darmowy sklepik):</label>
-	<input class="form-check-input" type="checkbox" name='sql_pokaz_sklepik' id="sql_pokaz_sklepik" <?php print $check_pokaz_sklepik; ?>>
+	<label for="exampleFormControlInput1" class="form-label">Pokaż panel "Ogłoszenia różne" (w panelu tym ogłaszasz różne dostępne produkty, których nie możesz przechowywac w sklepiku, bo np. nie masz mijsca lub usługi, które swiadczą inni, a może też  "dam pracę" - jeśli ktoś zgłosi taką ofertę lub "podejmą pracę"): </label>
+	<input class="form-check-input" style='width: 30px; height: 30px;' type="checkbox" name='sql_pokaz_ogloszenia' id="sql_pokaz_ogloszenia" <?php print $check_pokaz_ogloszenia; ?>>
     </div>    
     <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label ">Opis miejsca zbiórki darów:</label>
+      <label for="exampleFormControlTextarea1" class="form-label ">Opis miejsca i godzin zbiórki darów:</label>
       <textarea class="sql_miejsce_zbiorki" name="sql_miejsce_zbiorki" id="sql_miejsce_zbiorki" rows="3" rows="12" cols='10'><?php print $settings['miejsce_zbiorki']; ?></textarea>
     </div>
     <div class="mb-3">

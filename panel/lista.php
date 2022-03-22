@@ -163,7 +163,7 @@ print "<div class='row mt-3'>
 				    <div class='table_css_responsive_header'>Nazwa</div>
 				    <div class='table_css_responsive_header'>Opis</div>
 				    <div class='table_css_responsive_header'>Zapotrzebowanie</div>
-				    <div class='table_css_responsive_header'>Ile dostępnych</div>
+				    <div class='table_css_responsive_header'>Ile ogłaszanych</div>
 				    <div class='table_css_responsive_header'>j.m.</div>
 				    <div class='table_css_responsive_header'>Akcja</div>
 			    </div>";
@@ -224,9 +224,9 @@ print "<div class='row mt-3'>
 				    <div class='table_css_responsive_small'>
 						    <div class='table_css_responsive_cell'>Akcja:</div>
 						    <div class='table_css_responsive_cell'>
-							<button type=\"button\" id = 'edytuj_towar' class='edytuj_towar btn btn-info btn-sm' data-towar_id=$id>Edytuj</button>
-							<button type=\"button\" id = 'usun_towar' class='usun_towar btn btn-danger btn-sm' data-towar_id=$id data-towar_nazwa='$nazwa'>Kasuj</button>
-                                                        <button type=\"button\" id = 'status' class='status btn btn-sm $btn_status' data-towar_status=$status data-towar_id=$id >$btn_pokaz_name</button>    
+							<button type=\"button\" id = 'edytuj_towar' class='edytuj_towar btn btn-info btn-sm mt-1' data-towar_id=$id>Edytuj</button>
+							<button type=\"button\" id = 'usun_towar' class='usun_towar btn btn-danger btn-sm mt-1' data-towar_id=$id data-towar_nazwa='$nazwa'>Kasuj</button>
+                                                        <button type=\"button\" id = 'status' class='status btn btn-sm mt-1 $btn_status' data-towar_status=$status data-towar_id=$id >$btn_pokaz_name</button>    
 						    </div>
 
 				    </div>
@@ -294,7 +294,7 @@ print "<div class='row mt-3'>
 
 		</div>
 		<div class="mb-3">
-		    <label for="recipient-name" class="col-form-label ">Ile dostępnych:</label>
+		    <label for="recipient-name" class="col-form-label ">Ile ogłaszanych:</label>
 		    <input type="text" class="form-control edycja_towaru_dostepnosc" id="recipient-name">
 		</div>
 		<div class="mb-3">

@@ -36,13 +36,13 @@ include_once("../connect.php");
 					<li class='nav-item dropdown'>
 						<a class='nav-link dropdown-toggle text-dark px-3' href='#' role='button' data-bs-toggle='dropdown'><i class="fas fa-clipboard-list"></i> Edycja</a>
 						<ul class='dropdown-menu'>
-							<li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=1'> Towary</a></li>
+							<li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=1'> Rzeczy</a></li>
 							<li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=2'> Usługi</a></li>
 							<li><a class='dropdown-item px-3' href='potrzebne.php?kategorie__glowne_id=3'> Zakwaterowanie</a></li>
 						</ul>
 					</li>
 					<li class='nav-item'>
-						<a class='nav-link text-dark px-3' href='https://pomagamyzdw.pl' target='_new'><i class="fas fa-external-link-alt"></i></i> Portal główny</a>
+						<a class='nav-link text-dark px-3' href='../index.php' target='_new'><i class="fas fa-external-link-alt"></i></i> Portal główny</a>
 					</li> 
 					<li class='nav-item'>
 						<a class='nav-link text-dark px-3' href='settings.php' target='new'><i class="fas fa-tools"></i></i> Konfiguracja strony</a>

@@ -12,7 +12,7 @@
 		<div class='col-sm-2'>
 		</div>
 		<div class='col-sm-8'>
-                        <p><i class='fas fa-angle-double-right text-info'></i> Ważna informacja na początek: gdy masz coś do przekazania, nie umieścisz tego na portalu samodzielnie, po prostu przywieź to do punktu na wskazany adres lub zadzoń, w ostateczności napisz maila.</p>
+                        <p><i class='fas fa-angle-double-right text-info'></i> Ważna informacja na początek: gdy masz coś do przekazania, nie umieścisz tego na portalu samodzielnie, po prostu przywieź to do punktu na wskazany adres lub zadzwoń, w ostateczności napisz maila.</p>
 			<p><i class='fas fa-angle-double-right text-info'></i> Ten portal powstał aby każdy, kto niesie pomoc dla uchodźców, mógł na bieżąco sprawdzić jakie Towary, Usługi lub Zakwaterowanie jest potrzebne w danej chwili.</p>
 			<p><i class='fas fa-angle-double-right text-info'></i> Głównym atutem portalu jest bieżąca aktualizacja przez operatorów, co jest potwierdzone datą i godziną oznaczoną jako: "Stan na dzień".</p>
                         <p><i class='fas fa-angle-double-right text-info'></i> Portal jest aplikacją darmową i każdy może jej używać i dowolnie ją madyfikować pod warunkiem, że będzie służyła pomocy uchodźcom.</p>

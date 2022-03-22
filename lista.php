@@ -6,36 +6,37 @@ include_once("connect.php"); ?>
 	    $sql_kategorie__glowne = "SELECT * FROM kategorie__glowne WHERE id = ".$_GET['id_kategorie__glowne']."";
 	    $result_kategorie__glowne = mysqli_query($link, $sql_kategorie__glowne);
 	    $wiersz_kategorie__glowne = mysqli_fetch_array($result_kategorie__glowne);
-		    $nazwa_kategorie__glowne = $wiersz_kategorie__glowne['nazwa']; 
+		$nazwa_kategorie__glowne = $wiersz_kategorie__glowne['nazwa']; 
 	}
 	
 	if (isset($_GET['id_wiersz_kategorie__podkategorie_poziom_0']))
 	{
-	$sql_kategorie__podkategorie_poziom_0 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_0'];
-	$result_kategorie__podkategorie_poziom_0 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_0);
-	$wiersz_kategorie__podkategorie_poziom_0 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_0);
-		$id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_0['id']; 
-		$nazwa_kategorie__podkategorie_poziom_0 = $wiersz_kategorie__podkategorie_poziom_0['nazwa']; 
+	    $sql_kategorie__podkategorie_poziom_0 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_0'];
+	    $result_kategorie__podkategorie_poziom_0 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_0);
+	    $wiersz_kategorie__podkategorie_poziom_0 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_0);
+	    $id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_0['id']; 
+	    $nazwa_kategorie__podkategorie_poziom_0 = $wiersz_kategorie__podkategorie_poziom_0['nazwa']; 
 	}
 
 	if (isset($_GET['id_wiersz_kategorie__podkategorie_poziom_1']))
 	{
 	    if ($_GET['id_wiersz_kategorie__podkategorie_poziom_1'] != ""){
-		    $sql_kategorie__podkategorie_poziom_1 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_1'];
-		    $result_kategorie__podkategorie_poziom_1 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_1);
-		    $wiersz_kategorie__podkategorie_poziom_1 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_1);
-			    // jeśli warunek jest spełniony $id_kategorie__podkategorie jest nadpisane  
-			    $id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_1['id']; 
-			    $nazwa_kategorie__podkategorie_poziom_1 = $wiersz_kategorie__podkategorie_poziom_1['nazwa']; 
+		$sql_kategorie__podkategorie_poziom_1 = "SELECT * FROM kategorie__podkategorie WHERE id = ".$_GET['id_wiersz_kategorie__podkategorie_poziom_1'];
+		$result_kategorie__podkategorie_poziom_1 = mysqli_query($link, $sql_kategorie__podkategorie_poziom_1);
+		$wiersz_kategorie__podkategorie_poziom_1 = mysqli_fetch_array($result_kategorie__podkategorie_poziom_1);
+		// jeśli warunek jest spełniony $id_kategorie__podkategorie jest nadpisane  
+		$id_kategorie__podkategorie = $wiersz_kategorie__podkategorie_poziom_1['id']; 
+		$nazwa_kategorie__podkategorie_poziom_1 = $wiersz_kategorie__podkategorie_poziom_1['nazwa']; 
 	    }
 	}
 	if (@$_GET['wsk_lista'] == 1)
             $sql_towary_data_aktualizacji = "SELECT MAX(data) FROM towary WHERE pokaz = 1";
         else
             $sql_towary_data_aktualizacji = "SELECT MAX(data) FROM towary WHERE kategorie__podkategorie_id = ".$id_kategorie__podkategorie." AND pokaz = 1";
+	
 	$result_towary_data_aktualizacji = mysqli_query($link, $sql_towary_data_aktualizacji);
 	$wiersz_towary_data_aktualizacji = mysqli_fetch_array($result_towary_data_aktualizacji);
-		$data_aktualizacji = $wiersz_towary_data_aktualizacji[0];
+	$data_aktualizacji = $wiersz_towary_data_aktualizacji[0];
 	
 	
 ?>
@@ -51,7 +52,7 @@ include_once("connect.php"); ?>
                         if (@$_GET['wsk_dostepne'] == 1){ 
                             if (@$_GET['wsk_lista'] == 1)
                                 echo " wszystkie";
-                            echo " dostępne ";
+                            echo " ogłaszane ";
                         } else {
                             if (@$_GET['wsk_lista'] == 1)
                                 echo " wszystkie";
